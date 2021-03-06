@@ -3,7 +3,8 @@ import requests
 import logging
 import pickle
 import os
-import lxml.etree as ET
+import subprocess
+# import lxml.etree as ET
 from time import sleep
 from datetime import datetime, timedelta
 
@@ -49,6 +50,16 @@ def create_folder(path):
 	os.mkdir(path)
 	return True
 
-def append_txt_file(file_path, save_item, end='\n'):
+def append_txt_file(save_item, file_path='1.txt', end='\n'):
 	with open(file_path, 'a', encoding='utf8') as txt_file:
 		txt_file.write(save_item + end)
+
+@except_decorative
+def zip_folder(zf_name, path):
+	zf_name += '.7z'
+	a = subprocess.call(['7z', 'a', zf_name, path + "/*"])
+	res = a == 0
+	if not res:
+		os.remove(zf_name)
+	return res
+# zip_folder('imgs/28859910@N02/test', 'imgs/28859910@N02/Doi Lang')

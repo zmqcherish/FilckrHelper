@@ -68,6 +68,10 @@ def update_set(sid):
 	sql = f'update sets set done=1 where id = {sid}'
 	exec_sql(data_file, sql, None, True)
 
+def update_set2(sid):
+	sql = f'update sets set zip=1 where id = {sid}'
+	exec_sql(data_file, sql, None, True)
+
 def update_img(_id, sid):
 	sql = f'update img set done=1 where id = {_id} and set_id = {sid}'
 	exec_sql(data_file, sql, None, True)
